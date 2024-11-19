@@ -2,7 +2,7 @@
 
 Submitted by: **Maneesha**
 
-This web app: **K-DRAMA DIARY is a web app built specifically for k-drama lovers—a space where fans can share thoughts on their favorite films, post reviews, and engage in discussions on all things cinema! Users can create posts with titles, reviews, and images, making each entry more visually appealing. Each post appears in the main feed, displaying basic details like the title, posting time, and upvote count, so it’s easy to spot trending or recent posts.**
+This web app: **K-DRAMA DIARY is a web app built specifically for k-drama lovers—a space where fans can share thoughts on their favorite korean shows, films, post reviews, and engage in discussions on all things cinema! Users can create posts with titles, reviews, and images, making each entry more visually appealing. Each post appears in the main feed, displaying basic details like the title, posting time, and upvote count, so it’s easy to spot trending or recent posts.**
 
 Time spent: **10** hours spent in total
 
