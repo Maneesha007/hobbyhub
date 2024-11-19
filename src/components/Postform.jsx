@@ -1,26 +1,37 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const PostForm = ({ addPost }) => {
+function PostForm({ addPost }) {
   const [title, setTitle] = useState('');
-  const [review, setReview] = useState('');
-  const [image, setImage] = useState('');
+  const [content, setContent] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     const newPost = {
-      id: Math.random(), // Use a random id for demo purposes
       title,
-      review,
-      image,
+      content,
+      image_url: imageUrl,
       upvotes: 0,
-      createdTime: new Date().toISOString(),
-      comments: []
+      user_id: null, // No user authentication for now
     };
-    addPost(newPost);
-    setTitle('');
-    setReview('');
-    setImage('');
+  
+    try {
+      await addPost(newPost); // Add the post and update state
+      console.log('Post added, navigating to home...');
+
+      setTitle('');
+      setContent('');
+      setImageUrl('');
+      navigate('/');  // Navigate to the homepage after the post is added
+    } catch (error) {
+      console.error('Error creating post:', error.message);
+      alert('There was an issue creating your post. Please try again.');
+    }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -31,19 +42,19 @@ const PostForm = ({ addPost }) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
-        placeholder="Review"
-        value={review}
-        onChange={(e) => setReview(e.target.value)}
+        placeholder="Content"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Image URL (optional)"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
+        placeholder="Image URL"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
       />
-      <button type="submit">Create Post</button>
+      <button type="submit">Submit</button>
     </form>
   );
-};
+}
 
 export default PostForm;

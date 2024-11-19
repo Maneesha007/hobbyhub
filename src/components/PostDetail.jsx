@@ -4,9 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 const PostDetail = ({ posts, upvotePost, deletePost }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const post = posts.find((post) => post.id === parseFloat(id));
+  const post = posts.find((post) => post.id === parseInt(id)); // Use parseInt instead of parseFloat
   const [newComment, setNewComment] = useState('');
   const [editMode, setEditMode] = useState(false);
+  const [editTitle, setEditTitle] = useState(post?.title || '');
+  const [editReview, setEditReview] = useState(post?.review || '');
 
   if (!post) return <p>Post not found!</p>;
 
@@ -16,12 +18,13 @@ const PostDetail = ({ posts, upvotePost, deletePost }) => {
 
   const handleDelete = () => {
     deletePost(post.id);
-    navigate('/');
+    navigate('/'); // Navigate to homepage after deletion
   };
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    post.comments.push(newComment);
+    const updatedComments = [...post.comments, newComment];
+    post.comments = updatedComments;
     setNewComment('');
   };
 
@@ -30,7 +33,8 @@ const PostDetail = ({ posts, upvotePost, deletePost }) => {
   };
 
   const handleSaveEdit = () => {
-    // Logic to save the edit (e.g., updating post title and review)
+    post.title = editTitle;
+    post.review = editReview;
     setEditMode(false);
   };
 
@@ -40,12 +44,12 @@ const PostDetail = ({ posts, upvotePost, deletePost }) => {
         <div>
           <input
             type="text"
-            value={post.title}
-            onChange={(e) => post.title = e.target.value}
+            value={editTitle}
+            onChange={(e) => setEditTitle(e.target.value)} // Update the state
           />
           <textarea
-            value={post.review}
-            onChange={(e) => post.review = e.target.value}
+            value={editReview}
+            onChange={(e) => setEditReview(e.target.value)} // Update the state
           />
           <button onClick={handleSaveEdit}>Save</button>
         </div>
