@@ -25,7 +25,8 @@ function PostFeed() {
       <div>
         {posts.map((post) => (
           <div key={post.id}>
-            <Link to={`/post/${post.id}`}>
+            <Link to={`/posts/${post.id}`}>
+
               <h2>{post.title}</h2>
             </Link>
             <p>Upvotes: {post.upvotes}</p>

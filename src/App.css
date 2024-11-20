@@ -1,42 +1,256 @@
-#root {
-  max-width: 1280px;
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-image: url('./assets/K-Background.png'); /* Background image for homepage */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed; /* Ensures the background stays fixed */
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh; /* Ensure the background covers the entire height */
+}
+
+/* Main App Container */
+div.app-container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 30px; /* Added margin to separate from top */
+}
+
+/* Header */
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  padding: 10px; /* Adds space inside the header */
+}
+
+/* Center the entire content in the middle */
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align posts */
+  margin: 0 auto;
+  max-width: 800px; /* Restrict the width for better readability */
+}
+
+/* Post container styles */
+.post-preview {
+  background-color: rgba(0, 0, 0, 0.6); /* Background for posts */
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  width: 100%; /* Ensure posts take full width inside the container */
+  max-width: 600px; /* Restrict post width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow for depth */
+  text-align: left; /* Left-align text within posts */
+}
+
+.post-preview:hover {
+  transform: translateY(-5px); /* Slight hover lift effect */
+}
+
+.post-preview h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: left; /* Keep titles left-aligned */
+  color: #fff; /* Ensures post title color stays white */
+}
+
+.post-preview p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #ccc; /* Subtle gray for post text */
+}
+
+.post-preview a {
+  text-decoration: none;
+  color: #b286ce; /* Keep link color consistent */
+}
+
+.post-preview a:hover {
+  text-decoration: underline;
+}
+
+/* Create post button - Center aligned */
+a.create-post-button {
+  display: block;
+  text-decoration: none;
+  background-color: #b286ce; /* New button color */
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: white;
+  margin: 20px auto; /* Centers the button */
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+a.create-post-button:hover {
+  background-color: #9a6db0; /* Darker shade on hover */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Search and sort container */
+.search-sort-container {
+  display: flex;
+  justify-content: center; /* Center aligns the search and sort section */
+  margin-bottom: 20px;
+  gap: 10px; /* Adds spacing between elements */
+}
+
+.search-sort-container input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+}
+
+.search-sort-container button {
+  padding: 10px 20px;
+  background-color: #b286ce; /* Keep button color consistent */
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+}
+
+.search-sort-container button:hover {
+  background-color: #9a6db0; /* Darker shade on hover */
+}
+
+/* Post Detail View */
+.post-detail-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.post-detail-container h2 {
+  font-size: 32px;
+  color: #fff;
+}
+
+.post-detail-container p {
+  font-size: 18px;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+/* Sorting buttons */
+.sort-buttons {
+  display: flex;
+  justify-content: center; /* Center aligns the sort buttons */
+  gap: 10px;
+}
+
+.sort-buttons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  background-color: #b286ce; /* Keep button color consistent */
+  color: white;
+  border-radius: 4px;
+}
+
+.sort-buttons button:hover {
+  background-color: #9a6db0; /* Darker shade on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    background-image: none; /* Remove background image on smaller screens */
+    background-color: #333;
   }
-  to {
-    transform: rotate(360deg);
+
+  div.app-container {
+    padding: 15px;
+  }
+
+  .search-sort-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-sort-container input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .sort-buttons {
+    flex-direction: column;
+  }
+
+  .posts-container {
+    width: 100%; /* Adjust width for smaller screens */
+    align-items: center; /* Ensure centering remains */
+  }
+
+  .post-preview {
+    max-width: 90%; /* Posts fit within the screen */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Center the entire app container */
+div.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontally center everything */
+  justify-content: flex-start; /* Start content from the top */
+  min-height: 100vh; /* Ensures full height of the viewport */
+  padding: 20px;
 }
 
-.card {
-  padding: 2em;
+/* Posts container styles */
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensures posts are aligned to the center */
+  justify-content: center; /* Aligns content vertically */
+  margin: 0 auto;
+  width: 100%; /* Takes up the full width */
+  max-width: 700px; /* Restricts width for better readability */
+  padding: 10px; /* Optional: Spacing around posts */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Adds shadow for distinction */
+  background: rgba(0, 0, 0, 0.5); /* Optional: Slight transparent background for contrast */
+  border-radius: 10px; /* Optional: Rounded corners */
 }
 
-.read-the-docs {
-  color: #888;
+/* Center header and buttons */
+header {
+  text-align: center;
+  margin-bottom: 20px;
 }
+
+button, input[type="text"] {
+  margin: 10px;
+}
+
+/* Ensure responsive alignment */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5; /* Optional: Background adjustment */
+  font-family: Arial, sans-serif;
+}
+
