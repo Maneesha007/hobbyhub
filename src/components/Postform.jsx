@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './PostForm.css';
+import './Postform.css';
 
 function PostForm({ addPost }) {
   const [title, setTitle] = useState('');
@@ -16,30 +16,21 @@ function PostForm({ addPost }) {
       content,
       image_url: imageUrl || null, // Ensure null for optional fields
       upvotes: 0,
-      user_id: 1 // Static user_id for now
+      user_id: 1, // Static user_id for now
+      created_at: new Date().toISOString(), // Set the creation date
     };
 
     try {
-      console.log('Attempting to add post...');
       const addedPost = await addPost(newPost);
-
-      if (!addedPost) {
-        throw new Error('Post addition failed, no data returned');
+      if (addedPost) {
+        // Reset form fields
+        setTitle('');
+        setContent('');
+        setImageUrl('');
+        navigate('/'); // Navigate to the home feed
       }
-
-      console.log('Post successfully added:', addedPost);
-
-      // Reset form fields
-      setTitle('');
-      setContent('');
-      setImageUrl('');
-
-      // Navigate to the home feed
-      console.log('Navigating to home feed...');
-      navigate('/');
     } catch (error) {
       console.error('Error creating post:', error.message);
-      alert('There was an issue creating your post. Please try again.');
     }
   };
 
